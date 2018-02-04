@@ -11818,7 +11818,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 导入所有必要的包和函数。</span>
@@ -11835,7 +11835,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_first_point</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -11854,7 +11854,7 @@ div#notebook {
         <span class="c1">## 待办：对 DictReader 对象使用函数     ##</span>
         <span class="c1">## 从而读取数据文件的第一条骑行记录并将其存储为一个变量     ##</span>
         <span class="c1">## 见 https://docs.python.org/3/library/csv.html#reader-objects ##</span>
-        <span class="n">first_trip</span> <span class="o">=</span> <span class="n">trip_reader</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+        <span class="n">first_trip</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">trip_reader</span><span class="p">)</span>
         
         <span class="c1">## 待办：用 pprint 库来输出第一条骑行记录。 ##</span>
         <span class="c1">## 见 https://docs.python.org/3/library/pprint.html     ##</span>
@@ -11959,7 +11959,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">duration_in_mins</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
@@ -11976,12 +11976,16 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># 请在此处写出代码</span>
-    <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Washington&#39;</span><span class="p">:</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="s1">&#39;Duration (ms)&#39;</span><span class="p">])</span><span class="o">/</span><span class="mi">60000</span>
-        <span class="c1">#duration = float(datum)/60000</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="s1">&#39;tripduration&#39;</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>   
-    <span class="k">return</span> <span class="n">duration</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    if city == &#39;Washington&#39;:</span>
+<span class="sd">        duration = float(datum[&#39;Duration (ms)&#39;])/60000</span>
+<span class="sd">        #duration = float(datum)/60000</span>
+<span class="sd">    else:</span>
+<span class="sd">        duration = float(datum[&#39;tripduration&#39;])/60</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time_convertion</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NYC&#39;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;Washington&#39;</span><span class="p">:</span><span class="mi">60000</span><span class="p">}</span>
+    <span class="n">name_convertion</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NYC&#39;</span><span class="p">:</span><span class="s1">&#39;tripduration&#39;</span><span class="p">,</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span><span class="s1">&#39;tripduration&#39;</span><span class="p">,</span> <span class="s1">&#39;Washington&#39;</span><span class="p">:</span><span class="s1">&#39;Duration (ms)&#39;</span><span class="p">}</span>    
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="n">name_convertion</span><span class="p">[</span><span class="n">city</span><span class="p">]])</span><span class="o">/</span><span class="n">time_convertion</span><span class="p">[</span><span class="n">city</span><span class="p">]</span>
 
 
 <span class="c1"># 测试代码是否奏效，若所有断言都没问题，则不应有输出出现。</span>
@@ -12002,7 +12006,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">time_of_trip</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
@@ -12057,7 +12061,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">type_of_user</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
@@ -12107,7 +12111,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">condense_data</span><span class="p">(</span><span class="n">in_file</span><span class="p">,</span> <span class="n">out_file</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
@@ -12156,7 +12160,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 运行下框以测试效果</span>
@@ -12226,14 +12230,14 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 <p><a id='statistics'></a></p>
 <h3 id="&#32479;&#35745;&#25968;&#25454;">&#32479;&#35745;&#25968;&#25454;<a class="anchor-link" href="#&#32479;&#35745;&#25968;&#25454;">&#182;</a></h3><p>首先，我们来进行一些基本统计。下方的第一个框里包括了一个函数，该函数会用 csv 模块来对给定的数据文件进行迭代处理，并返回会员和散客的骑行次数。第二个框则会运行 <code>/examples/</code> 文件夹里湾区示例数据中的函数。修改下框，回答下列问题。</p>
 <p><strong>问题 4a</strong>：哪座城市的骑行次数最多？哪座城市会员进行的骑行次数占比最高？哪座城市散客进行的骑行次数占比最高？</p>
-<p><strong>答案</strong>：NYC纽约骑行次数最多，NYC纽约，NYC纽约</p>
+<p><strong>答案</strong>：NYC纽约骑行次数最多，NYC纽约骑行次数占比最高，Chicago散客进行的骑行次数占比最高</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">number_of_trips</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">city</span><span class="p">):</span>
@@ -12270,7 +12274,7 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 修改此框及上框，回答问题 4a。##</span>
@@ -12280,10 +12284,12 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 <span class="n">city_infos</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Washington&#39;</span><span class="p">:</span>  <span class="s1">&#39;./data/Washington-2016-Summary.csv&#39;</span><span class="p">,</span>
              <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span>  <span class="s1">&#39;./data/Chicago-2016-Summary.csv&#39;</span><span class="p">,</span>
              <span class="s1">&#39;NYC&#39;</span><span class="p">:</span>  <span class="s1">&#39;./data/NYC-2016-Summary.csv&#39;</span><span class="p">}</span>
-<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">city_infos</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="n">number_of_trips</span><span class="p">(</span><span class="n">city_infos</span><span class="p">[</span><span class="n">city</span><span class="p">],</span><span class="n">city</span><span class="p">))</span>
-
-<span class="c1">#print(number_of_trips(data_file))</span>
+<span class="n">statistics_percent</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">city_infos</span><span class="p">:</span>
+    <span class="n">statistics_percent</span><span class="o">=</span> <span class="n">number_of_trips</span><span class="p">(</span><span class="n">city_infos</span><span class="p">[</span><span class="n">city</span><span class="p">],</span><span class="n">city</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;:骑行次数：&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span><span class="s2">&quot;会员占比：&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;散客占比：&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">statistics_percent</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+<span class="c1">#print(sorted(statistics_percent,key=lambda x: x[3],reverse=True))</span>
+    <span class="c1">#</span>
 </pre></div>
 
 </div>
@@ -12300,9 +12306,9 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(&#39;Washington&#39;, 51753, 14573, 66326)
-(&#39;Chicago&#39;, 54982, 17149, 72131)
-(&#39;NYC&#39;, 245896, 30902, 276798)
+<pre>Washington:骑行次数：66326会员占比：0.7802822422579381散客占比：0.21971775774206193
+Chicago:骑行次数：72131会员占比：0.7622520136973008散客占比：0.23774798630269925
+NYC:骑行次数：276798会员占比：0.8883590199351151散客占比：0.11164098006488486
 </pre>
 </div>
 </div>
@@ -12327,7 +12333,7 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来回答问题 4b。               ##</span>
@@ -12391,7 +12397,7 @@ OrderedDict([(&#39;duration&#39;, &#39;13.983333333333333&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来回答问题 4c。##</span>
@@ -12463,7 +12469,7 @@ Customer
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 加载库</span>
@@ -12525,7 +12531,7 @@ Customer
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来收集所有骑行时长并制成列表。##</span>
@@ -12585,7 +12591,7 @@ Customer
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来回答问题 5##</span>
@@ -12666,14 +12672,14 @@ Customer
 </ul>
 <p>若你在问题 1 回答中提出的任何问题与上述参考类似，那现在就是研究这些的好时机。作为研究的一部分，你需要创建可视化界面，如果不想创建直方图，你可以参考 <a href="https://matplotlib.org/devdocs/api/pyplot_summary.html">Pyplot 文件</a>。值得一提的是，如果你想为分类变量的不同值绘制统计图（如城市、用户类型），柱形图会大有帮助。<a href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.bar.html#matplotlib.pyplot.bar"><code>.bar()</code>文件页面</a>底部具备相关示例链接，可供你参考，助你创建自己需要的统计图。</p>
 <p><strong>问题 6</strong>：探索另一个可用数据回答的问题，继续研究。在下方写下你想探索的问题，你的研究至少应包括两个变量，对比两组数据并使用一个可视化界面。</p>
-<p><strong>答案</strong>: 不同城市每个工作日和周末的骑行量统计</p>
+<p><strong>答案</strong>: 不同城市每个工作日和周末的骑行量统计，Washington和NYC周三周四骑行人数相对较多，NYC周末骑行人数相对较少</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来继续探索数据集。 ##</span>
@@ -12788,7 +12794,7 @@ Customer
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="k">import</span> <span class="n">call</span>
@@ -12805,7 +12811,7 @@ Customer
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[22]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 
 
 
